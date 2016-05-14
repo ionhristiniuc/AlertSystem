@@ -13,6 +13,8 @@ namespace WebApp
 			var container = new UnityContainer();
 
             container.RegisterType<IUsersRepository, UsersRepository>();
+            container.RegisterType<IAlertsRepository, AlertsRepository>();
+            container.RegisterType<ISourcesRepository, SourcesRepository>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
