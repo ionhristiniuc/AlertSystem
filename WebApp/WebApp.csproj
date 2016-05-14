@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -269,6 +270,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Core\AlertsParsers\ApiParsers\" />
+    <Folder Include="Core\AlertsParsers\HtmlParsers\" />
+    <Folder Include="Core\AlertsParsers\RssParsers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Alerts\" />
   </ItemGroup>
