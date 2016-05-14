@@ -14,6 +14,7 @@ namespace WebApp.ViewModels
         public Nullable<System.DateTime> Notify_time { get; set; }
         public Nullable<int> User_id { get; set; }
         public Nullable<int> Source_id { get; set; }
+        public string Address { get; set; }
 
         public AlertModel(Database.Alert alert)
         {
@@ -24,6 +25,7 @@ namespace WebApp.ViewModels
             Notify_time = alert.Notify_time;
             User_id = alert.User_id;
             Source_id = alert.Source_id;
+            Address = alert.Address;
         }
     }
 }
