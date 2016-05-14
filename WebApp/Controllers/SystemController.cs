@@ -8,6 +8,7 @@ using System.Web.Http.Results;
 using WebApp.Core.Services;
 using WebApp.Repositories;
 using WebApp.Database;
+using WebApp.Core.Extensions;
 
 namespace WebApp.Controllers
 {
@@ -31,8 +32,8 @@ namespace WebApp.Controllers
                 foreach (var parser in parsers)
                 {
                     var alerts = parser.Value.GetAlerts();
-                    var filteredAlerts = FilterAlerts(alerts);                    
-                    _alertsRepository.Add(alerts.ToArray());
+                    var newItems = GetNewAlerts(alerts);
+                    _alertsRepository.Add(newItems.ToArray());
                 }
 
                 return new StatusCodeResult(HttpStatusCode.OK, this);
@@ -43,21 +44,11 @@ namespace WebApp.Controllers
             }            
         }
 
-        private IEnumerable<Alert> FilterAlerts(IEnumerable<Alert> alerts)
-        {                       
-            return null;
-        }
-
-        private void InsertAlertToDb(Alert alert)
+        private IEnumerable<Alert> GetNewAlerts(IEnumerable<Alert> alerts)
         {
-            alert.Search_key = string.Format("{0}-{1}-{2}",
-                alert.Source_id, alert.Subject, alert.Notify_time.ToString());
-
-            _alertsRepository.Add(alert);
-        }
-
-        
-        // Search notifications logic
-        // Update db with new notifications        
+            var searchKeys = alerts.Select(a => a.GetSearchKey());
+            var existItems = _alertsRepository.GetList(a => searchKeys.Contains(a.Search_key));
+            return alerts.Where(a => !existItems.Any(e => a.Search_key == e.Search_key));
+        }                           
     }
 }
