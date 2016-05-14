@@ -1,42 +1,58 @@
 var MapsGoogle = function () {
+    var latitude = +47.020819;
+    var longitude = +28.838862;
+    if (!!navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success);
+        }
 
-    var mapBasic = function () {
-        new GMaps({
-            div: '#gmap_basic',
-            lat: -12.043333,
-            lng: -77.028333
-        });
-    }
+    function success(position) {
+        var crd = position.coords;
+        latitude = crd.latitude;
+        longitude = crd.longitude;
+    } 
 
-    var mapMarker = function () {
-        var map = new GMaps({
-            div: '#gmap_marker',
-           lat: -51.38739,
-                lng: -6.187181,
-        });
-        map.addMarker({
-           lat: -51.38739,
-                lng: -6.187181,
-            title: 'Lima',
-            details: {
-                database_id: 42,
-                author: 'HPNeo'
-            },
-            click: function (e) {
-                if (console.log) console.log(e);
-                alert('You clicked in this marker');
-            }
-        });
-        map.addMarker({
-            lat: -12.042,
-            lng: -77.028333,
-            title: 'Marker with InfoWindow',
-            infoWindow: {
-                content: '<span style="color:#000">HTML Content!</span>'
-            }
-        });
-        map.setZoom(5);
-    }
+
+    //var mapBasic = function () {
+    //    new GMaps({
+    //        div: '#gmap_basic',
+    //        lat: latitude,
+    //        lng: longitude,
+    //        zoom: 10
+    //    });
+    //}
+
+    var map = new GMaps({
+        div: '#gmap_basic',
+        lat: latitude,
+        lng: longitude,
+        zoom: 10
+    });
+
+    map.addMarker({
+        lat: latitude,
+        lng: longitude,
+        infoWindow: {
+            content: '<p></p>'
+        }
+    })
+    var geocoder = new google.maps.Geocoder();
+    var address = "Chisinau, Alexandru Hajdeu, 98/1";
+
+    geocoder.geocode({ 'address': address }, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            map.addMarker({
+                lat: latitude,
+                lng: longitude,
+                infoWindow: {
+                    content: '<p>Hijdeu 98/1</p>'
+                }
+            })
+        }
+    });
+
 
     var mapPolylines = function () {
         var map = new GMaps({
@@ -189,7 +205,7 @@ var MapsGoogle = function () {
     return {
         //main function to initiate map samples
         init: function () {
-            mapBasic();
+            //mapBasic();
             mapMarker();
             mapGeolocation();
             mapGeocoding();

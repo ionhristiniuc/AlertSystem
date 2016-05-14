@@ -4,21 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApp.Repositories;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private IUsersRepository _usersRepository;
+        private IAlertsRepository _alertRepository;
 
-        public HomeController(IUsersRepository usersRepository)
+        public HomeController(IAlertsRepository alertRepository)
         {
-            _usersRepository = usersRepository;
+            _alertRepository = alertRepository;
         }
 
         public ActionResult Index()
         {
-            var users = _usersRepository.GetList(u => u.id < 9);
+            //var users = _usersRepository.GetList(u => u.id < 9);
+            var alerts = _alertRepository.GetAll();
+            ViewBag.alerts = alerts.Select(x => new AlertModel(x)).ToList();
 
             return View();
         }
