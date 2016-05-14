@@ -16,6 +16,7 @@
           <Property Name="Notify_time" Type="datetime" Precision="0" />
           <Property Name="User_id" Type="int" />
           <Property Name="Source_id" Type="int" />
+          <Property Name="Search_key" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="parser_types">
           <Key>
@@ -112,6 +113,7 @@
           <Property Name="Source_id" Type="Int32" />
           <NavigationProperty Name="Source" Relationship="Self.fk_alert_source1" FromRole="alert" ToRole="source" />
           <NavigationProperty Name="User" Relationship="Self.fk_alert_user" FromRole="alert" ToRole="user" />
+          <Property Name="Search_key" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -204,6 +206,7 @@
           <EntitySetMapping Name="Alerts">
             <EntityTypeMapping TypeName="alertSystemModel.Alert">
               <MappingFragment StoreEntitySet="alert">
+                <ScalarProperty Name="Search_key" ColumnName="Search_key" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="Short_text" ColumnName="Short_text" />

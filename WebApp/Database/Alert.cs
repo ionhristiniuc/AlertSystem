@@ -21,6 +21,7 @@ namespace WebApp.Database
         public Nullable<System.DateTime> Notify_time { get; set; }
         public Nullable<int> User_id { get; set; }
         public Nullable<int> Source_id { get; set; }
+        public string Search_key { get; set; }
     
         public virtual Source Source { get; set; }
         public virtual User User { get; set; }

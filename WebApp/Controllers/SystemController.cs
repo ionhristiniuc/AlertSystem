@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using WebApp.Core.Services;
 using WebApp.Repositories;
+using WebApp.Database;
 
 namespace WebApp.Controllers
 {
@@ -30,7 +31,7 @@ namespace WebApp.Controllers
                 foreach (var parser in parsers)
                 {
                     var alerts = parser.Value.GetAlerts();
-                    // choose which alerts will be updated - filter
+                    var filteredAlerts = FilterAlerts(alerts);                    
                     _alertsRepository.Add(alerts.ToArray());
                 }
 
@@ -42,6 +43,20 @@ namespace WebApp.Controllers
             }            
         }
 
+        private IEnumerable<Alert> FilterAlerts(IEnumerable<Alert> alerts)
+        {                       
+            return null;
+        }
+
+        private void InsertAlertToDb(Alert alert)
+        {
+            alert.Search_key = string.Format("{0}-{1}-{2}",
+                alert.Source_id, alert.Subject, alert.Notify_time.ToString());
+
+            _alertsRepository.Add(alert);
+        }
+
+        
         // Search notifications logic
         // Update db with new notifications        
     }
