@@ -178,6 +178,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
+    <Compile Include="Core\AlertsParsers\RssParsers\MoldtelecomAlertsParser.cs" />
+    <Compile Include="Core\Factories\AlertsParsersFactory.cs" />
+    <Compile Include="Core\Services\AlertsService.cs" />
+    <Compile Include="Core\Services\IAlertsService.cs" />
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -206,12 +210,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AlertsRepository.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\IAlertsRepository.cs" />
-    <Compile Include="Repositories\IGenericRepository.cs" />
-    <Compile Include="Repositories\IUsersRepository.cs" />
-    <Compile Include="Repositories\UsersRepository.cs" />
+    <Compile Include="Core\Repositories\AlertsRepository.cs" />
+    <Compile Include="Core\Repositories\GenericRepository.cs" />
+    <Compile Include="Core\Repositories\IAlertsRepository.cs" />
+    <Compile Include="Core\Repositories\IGenericRepository.cs" />
+    <Compile Include="Core\Repositories\ISourcesRepository.cs" />
+    <Compile Include="Core\Repositories\IUsersRepository.cs" />
+    <Compile Include="Core\Repositories\SourcesRepository.cs" />
+    <Compile Include="Core\Repositories\UsersRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +278,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Core\AlertsParsers\ApiParsers\" />
     <Folder Include="Core\AlertsParsers\HtmlParsers\" />
-    <Folder Include="Core\AlertsParsers\RssParsers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Alerts\" />
   </ItemGroup>
