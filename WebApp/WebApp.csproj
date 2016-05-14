@@ -48,6 +48,10 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -181,6 +185,7 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Core\AlertsParsers\HtmlParsers\GasFenosaParser.cs" />
     <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
     <Compile Include="Core\AlertsParsers\RssParsers\MoldtelecomAlertsParser.cs" />
     <Compile Include="Core\Enums\ParserTypesEnum.cs" />
@@ -5858,7 +5863,6 @@
     <Folder Include="Content\assets\apps\img\" />
     <Folder Include="Content\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="Core\AlertsParsers\ApiParsers\" />
-    <Folder Include="Core\AlertsParsers\HtmlParsers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Alerts\" />
   </ItemGroup>
