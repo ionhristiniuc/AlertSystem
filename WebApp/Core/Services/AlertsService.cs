@@ -29,7 +29,7 @@ namespace WebApp.Core.Services
 
             foreach (var source in _alertsSources)
             {
-                IAlertsParser parser = parsersFactory.CreateParser(source.Value.Name);
+                IAlertsParser parser = parsersFactory.CreateParser(source.Value);
                 _alertsParsers.Add(source.Value.Name, parser);
             }
         }
