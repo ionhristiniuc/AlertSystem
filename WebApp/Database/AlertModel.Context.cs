@@ -28,5 +28,6 @@ namespace WebApp.Database
         public DbSet<Alert> Alerts { get; set; }
         public DbSet<Source> Sources { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ParserTypes> ParserTypes { get; set; }
     }
 }

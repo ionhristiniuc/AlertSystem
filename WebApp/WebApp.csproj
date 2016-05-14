@@ -205,6 +205,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Database\ParserTypes.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Source.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>

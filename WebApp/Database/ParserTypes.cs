@@ -12,19 +12,15 @@ namespace WebApp.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Source
+    public partial class ParserTypes
     {
-        public Source()
+        public ParserTypes()
         {
-            this.Alerts = new HashSet<Alert>();
+            this.Sources = new HashSet<Source>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string URL { get; set; }
-        public string ParserType { get; set; }
+        public string Type { get; set; }
     
-        public virtual ICollection<Alert> Alerts { get; set; }
-        public virtual ParserTypes ParserTypes { get; set; }
+        public virtual ICollection<Source> Sources { get; set; }
     }
 }
