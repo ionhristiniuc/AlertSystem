@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="alertSystemModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="100" />
+          <Property Name="Short_text" Type="varchar" MaxLength="200" />
+          <Property Name="Text" Type="varchar" MaxLength="1000" />
+          <Property Name="Notify_time" Type="datetime" Precision="0" />
+          <Property Name="User_id" Type="int" />
+          <Property Name="Source_id" Type="int" />
+        </EntityType>
+        <EntityType Name="source">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="URL" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="usercol" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_alert_source1">
+          <End Role="source" Type="Self.source" Multiplicity="0..1" />
+          <End Role="alert" Type="Self.alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alert">
+              <PropertyRef Name="Source_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alert_user">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="alert" Type="Self.alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="alert">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="alertSystemModelStoreContainer">
+          <EntitySet Name="alert" EntityType="Self.alert" Schema="alertsystem" store:Type="Tables" />
+          <EntitySet Name="source" EntityType="Self.source" Schema="alertsystem" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="alertsystem" store:Type="Tables" />
+          <AssociationSet Name="fk_alert_source1" Association="Self.fk_alert_source1">
+            <End Role="source" EntitySet="source" />
+            <End Role="alert" EntitySet="alert" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alert_user" Association="Self.fk_alert_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="alert" EntitySet="alert" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="alertSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Short_text" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Notify_time" Type="DateTime" />
+          <Property Name="User_id" Type="Int32" />
+          <Property Name="Source_id" Type="Int32" />
+          <NavigationProperty Name="Source" Relationship="Self.fk_alert_source1" FromRole="alert" ToRole="source" />
+          <NavigationProperty Name="User" Relationship="Self.fk_alert_user" FromRole="alert" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alerts" Relationship="Self.fk_alert_source1" FromRole="source" ToRole="alert" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="usercol" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alerts" Relationship="Self.fk_alert_user" FromRole="user" ToRole="alert" />
+        </EntityType>
+        <Association Name="fk_alert_source1">
+          <End Role="source" Type="alertSystemModel.Source" Multiplicity="0..1" />
+          <End Role="alert" Type="alertSystemModel.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alert">
+              <PropertyRef Name="Source_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alert_user">
+          <End Role="user" Type="alertSystemModel.User" Multiplicity="0..1" />
+          <End Role="alert" Type="alertSystemModel.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="alert">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="alertSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alerts" EntityType="alertSystemModel.Alert" />
+          <EntitySet Name="Sources" EntityType="alertSystemModel.Source" />
+          <EntitySet Name="Users" EntityType="alertSystemModel.User" />
+          <AssociationSet Name="fk_alert_source1" Association="Self.fk_alert_source1">
+            <End Role="source" EntitySet="Sources" />
+            <End Role="alert" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alert_user" Association="Self.fk_alert_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="alert" EntitySet="Alerts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="alertSystemModelStoreContainer" CdmEntityContainer="alertSystemEntities">
+          <EntitySetMapping Name="Alerts">
+            <EntityTypeMapping TypeName="alertSystemModel.Alert">
+              <MappingFragment StoreEntitySet="alert">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Short_text" ColumnName="Short_text" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Notify_time" ColumnName="Notify_time" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Source_id" ColumnName="Source_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="alertSystemModel.Source">
+              <MappingFragment StoreEntitySet="source">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="alertSystemModel.User">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usercol" ColumnName="usercol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
