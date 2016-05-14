@@ -9,18 +9,17 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
 {
     public class GasFenosaParser : IAlertsParser
     {
-        private readonly HtmlWeb _webPage;
-        private readonly string _url;
+        private readonly Source _source;
+        private readonly HtmlWeb _webPage = new HtmlWeb();        
 
-        public GasFenosaParser(HtmlWeb webPage, string url)
+        public GasFenosaParser(Source source)
         {
-            _webPage = webPage;
-            _url = url;
+            _source = source;            
         }
 
         public IEnumerable<Alert> GetAlerts()
         {
-            var document = _webPage.Load(_url);
+            var document = _webPage.Load(_source.URL);
             var baseNodes = document.DocumentNode.SelectNodes(".//tr");
 
             foreach (var trNode in baseNodes)
@@ -42,8 +41,9 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
                 yield return new Alert
                 {
                     Subject = subject,
-                    Text = text,
-                    Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null),
+                    Short_text = text,
+                    Source_id = _source.Id,                                        
+                    Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null),                                                                                
                 };
             }
         }

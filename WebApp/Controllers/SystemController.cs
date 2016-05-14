@@ -36,8 +36,8 @@ namespace WebApp.Controllers
                 foreach (var parser in parsers)
                 {
                     var alerts = parser.Value.GetAlerts();
-                    var newItems = GetNewAlerts(alerts);
-                    newItems.ForEach(i => i.Source_id = parser.Key);
+                    alerts.ForEach(i => i.Source_id = parser.Key);
+                    var newItems = GetNewAlerts(alerts);                    
                     _alertsRepository.Add(newItems.ToArray());
                 }
 

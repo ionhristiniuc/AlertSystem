@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.AlertsParsers;
+using WebApp.Core.AlertsParsers.HtmlParsers;
 using WebApp.Core.AlertsParsers.RssParsers;
 using WebApp.Core.Enums;
 using WebApp.Database;
@@ -21,7 +22,7 @@ namespace WebApp.Core.Factories
                 case ParserTypesEnum.RssFeed:
                     return new RssFeedParser(s);
                 case ParserTypesEnum.GazNaturalFenosaHtmlParser:
-                    return null;
+                    return new GasFenosaParser(s);
                 default:
                     throw new ArgumentException("Unexpected Parser Name " + s.Name);
             }

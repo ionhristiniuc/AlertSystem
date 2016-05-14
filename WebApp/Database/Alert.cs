@@ -22,8 +22,12 @@ namespace WebApp.Database
         public Nullable<int> User_id { get; set; }
         public Nullable<int> Source_id { get; set; }
         public string Search_key { get; set; }
+        public string Address { get; set; }
+        public string Alert_category { get; set; }
+        public Nullable<int> Raiting { get; set; }
     
         public virtual Source Source { get; set; }
         public virtual User User { get; set; }
+        public virtual alert_category alert_category1 { get; set; }
     }
 }

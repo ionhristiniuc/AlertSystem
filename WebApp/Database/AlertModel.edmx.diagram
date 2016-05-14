@@ -7,11 +7,13 @@
       <Diagram DiagramId="f4049162f2b84cb2b87597fb05bca61b" Name="Diagram1">
         <EntityTypeShape EntityType="alertSystemModel.Alert" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="alertSystemModel.Source" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="alertSystemModel.User" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="alertSystemModel.User" Width="1.5" PointX="7.625" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="alertSystemModel.fk_alert_source1" ManuallyRouted="false" />
         <AssociationConnector Association="alertSystemModel.fk_alert_user" ManuallyRouted="false" />
         <EntityTypeShape EntityType="alertSystemModel.ParserTypes" Width="1.5" PointX="0.75" PointY="8.875" />
         <AssociationConnector Association="alertSystemModel.FK_source_ParserType_parser_types_Type" />
+        <EntityTypeShape EntityType="alertSystemModel.alert_category" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="alertSystemModel.fk_alert_alert_category1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
