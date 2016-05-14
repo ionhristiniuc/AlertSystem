@@ -210,6 +210,9 @@
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\AlertCategory.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\AlertModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,9 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\alert_category.cs">
-      <DependentUpon>AlertModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\ParserTypes.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -235,6 +235,9 @@
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\User.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserAlertQueue.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

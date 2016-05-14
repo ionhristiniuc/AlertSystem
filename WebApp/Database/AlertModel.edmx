@@ -51,6 +51,15 @@
           <Property Name="email" Type="varchar" MaxLength="45" />
           <Property Name="password" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="user_alert_queue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AlertId" Type="int" Nullable="false" />
+          <Property Name="ViewedOn" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
         <Association Name="fk_alert_alert_category1">
           <End Role="alert_category" Type="Self.alert_category" Multiplicity="0..1" />
           <End Role="alert" Type="Self.alert" Multiplicity="*" />
@@ -99,12 +108,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_uaq_AlertId_alert_Id">
+          <End Role="alert" Type="Self.alert" Multiplicity="1" />
+          <End Role="user_alert_queue" Type="Self.user_alert_queue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_alert_queue">
+              <PropertyRef Name="AlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_uaq_UserId_user_Id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_alert_queue" Type="Self.user_alert_queue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_alert_queue">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="alertSystemModelStoreContainer">
           <EntitySet Name="alert" EntityType="Self.alert" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="alert_category" EntityType="Self.alert_category" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="parser_types" EntityType="Self.parser_types" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="source" EntityType="Self.source" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="alertsystem" store:Type="Tables" />
+          <EntitySet Name="user_alert_queue" EntityType="Self.user_alert_queue" Schema="alertsystem" store:Type="Tables" />
           <AssociationSet Name="fk_alert_alert_category1" Association="Self.fk_alert_alert_category1">
             <End Role="alert_category" EntitySet="alert_category" />
             <End Role="alert" EntitySet="alert" />
@@ -120,6 +154,14 @@
           <AssociationSet Name="FK_source_ParserType_parser_types_Type" Association="Self.FK_source_ParserType_parser_types_Type">
             <End Role="parser_types" EntitySet="parser_types" />
             <End Role="source" EntitySet="source" />
+          </AssociationSet>
+          <AssociationSet Name="FK_uaq_AlertId_alert_Id" Association="Self.FK_uaq_AlertId_alert_Id">
+            <End Role="alert" EntitySet="alert" />
+            <End Role="user_alert_queue" EntitySet="user_alert_queue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_uaq_UserId_user_Id" Association="Self.FK_uaq_UserId_user_Id">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_alert_queue" EntitySet="user_alert_queue" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -143,7 +185,8 @@
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Alert_category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Raiting" Type="Int32" />
-          <NavigationProperty Name="alert_category1" Relationship="alertSystemModel.fk_alert_alert_category1" FromRole="Alert" ToRole="alert_category" />
+          <NavigationProperty Name="AlertCategory" Relationship="alertSystemModel.fk_alert_alert_category1" FromRole="Alert" ToRole="alert_category" />
+          <NavigationProperty Name="UserAlertQueue" Relationship="alertSystemModel.FK_uaq_AlertId_alert_Id" FromRole="Alert" ToRole="user_alert_queue" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -165,6 +208,7 @@
           <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alerts" Relationship="Self.fk_alert_user" FromRole="user" ToRole="alert" />
           <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserAlertQueue" Relationship="alertSystemModel.FK_uaq_UserId_user_Id" FromRole="User" ToRole="user_alert_queue" />
         </EntityType>
         <Association Name="fk_alert_source1">
           <End Role="source" Type="alertSystemModel.Source" Multiplicity="0..1" />
@@ -207,10 +251,19 @@
             <End Role="parser_types" EntitySet="ParserTypes" />
             <End Role="Source" EntitySet="Sources" />
           </AssociationSet>
-          <EntitySet Name="alert_category" EntityType="alertSystemModel.alert_category" />
+          <EntitySet Name="AlertCategory" EntityType="alertSystemModel.AlertCategory" />
           <AssociationSet Name="fk_alert_alert_category1" Association="alertSystemModel.fk_alert_alert_category1">
-            <End Role="alert_category" EntitySet="alert_category" />
+            <End Role="alert_category" EntitySet="AlertCategory" />
             <End Role="Alert" EntitySet="Alerts" />
+          </AssociationSet>
+          <EntitySet Name="UserAlertQueue" EntityType="alertSystemModel.UserAlertQueue" />
+          <AssociationSet Name="FK_uaq_AlertId_alert_Id" Association="alertSystemModel.FK_uaq_AlertId_alert_Id">
+            <End Role="Alert" EntitySet="Alerts" />
+            <End Role="user_alert_queue" EntitySet="UserAlertQueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_uaq_UserId_user_Id" Association="alertSystemModel.FK_uaq_UserId_user_Id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="user_alert_queue" EntitySet="UserAlertQueue" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ParserTypes">
@@ -232,15 +285,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="alert_category">
+        <EntityType Name="AlertCategory">
           <Key>
             <PropertyRef Name="Category" />
           </Key>
           <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="alerts" Relationship="alertSystemModel.fk_alert_alert_category1" FromRole="alert_category" ToRole="Alert" />
+          <NavigationProperty Name="Alerts" Relationship="alertSystemModel.fk_alert_alert_category1" FromRole="alert_category" ToRole="Alert" />
         </EntityType>
         <Association Name="fk_alert_alert_category1">
-          <End Type="alertSystemModel.alert_category" Role="alert_category" Multiplicity="0..1" />
+          <End Type="alertSystemModel.AlertCategory" Role="alert_category" Multiplicity="0..1" />
           <End Type="alertSystemModel.Alert" Role="Alert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alert_category">
@@ -248,6 +301,41 @@
             </Principal>
             <Dependent Role="Alert">
               <PropertyRef Name="Alert_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserAlertQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AlertId" Type="Int32" Nullable="false" />
+          <Property Name="ViewedOn" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Alert" Relationship="alertSystemModel.FK_uaq_AlertId_alert_Id" FromRole="user_alert_queue" ToRole="Alert" />
+          <NavigationProperty Name="User" Relationship="alertSystemModel.FK_uaq_UserId_user_Id" FromRole="user_alert_queue" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_uaq_AlertId_alert_Id">
+          <End Type="alertSystemModel.Alert" Role="Alert" Multiplicity="1" />
+          <End Type="alertSystemModel.UserAlertQueue" Role="user_alert_queue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_alert_queue">
+              <PropertyRef Name="AlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_uaq_UserId_user_Id">
+          <End Type="alertSystemModel.User" Role="User" Multiplicity="1" />
+          <End Type="alertSystemModel.UserAlertQueue" Role="user_alert_queue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_alert_queue">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -301,10 +389,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="alert_category">
-            <EntityTypeMapping TypeName="alertSystemModel.alert_category">
+          <EntitySetMapping Name="AlertCategory">
+            <EntityTypeMapping TypeName="alertSystemModel.AlertCategory">
               <MappingFragment StoreEntitySet="alert_category">
                 <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAlertQueue">
+            <EntityTypeMapping TypeName="alertSystemModel.UserAlertQueue">
+              <MappingFragment StoreEntitySet="user_alert_queue">
+                <ScalarProperty Name="ViewedOn" ColumnName="ViewedOn" />
+                <ScalarProperty Name="AlertId" ColumnName="AlertId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
