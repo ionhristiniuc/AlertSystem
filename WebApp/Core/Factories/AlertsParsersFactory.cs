@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.AlertsParsers;
 using WebApp.Core.AlertsParsers.RssParsers;
+using WebApp.Database;
 
 namespace WebApp.Core.Factories
 {
@@ -12,7 +13,7 @@ namespace WebApp.Core.Factories
     {
         public IAlertsParser CreateParser(Source s)
         {
-            switch (s.)
+            switch (s.Name)
             {
                 case "Moldtelecom":
                     return new RssFeed(s);               
