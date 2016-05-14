@@ -193,6 +193,7 @@
     <Compile Include="Core\Services\AlertsService.cs" />
     <Compile Include="Core\Services\IAlertsService.cs" />
     <Compile Include="Core\AlertsParsers\RssParsers\RssFeedParser.cs" />
+    <Compile Include="Core\Util\JavaScriptConvert.cs" />
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
