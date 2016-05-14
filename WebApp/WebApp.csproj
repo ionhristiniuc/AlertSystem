@@ -195,11 +195,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\AlertModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AlertModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\AlertModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,6 +219,7 @@
     <Compile Include="Core\Repositories\SourcesRepository.cs" />
     <Compile Include="Core\Repositories\UsersRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Alert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\apps\css\inbox.css" />
