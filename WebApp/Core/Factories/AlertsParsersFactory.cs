@@ -18,7 +18,7 @@ namespace WebApp.Core.Factories
                 case "Moldtelecom":
                     return new RssFeed(s);               
                 default:
-                    throw new ArgumentException("Unexpected Parser Name " + name);
+                    throw new ArgumentException("Unexpected Parser Name " + s.Name);
             }
         }
     }
