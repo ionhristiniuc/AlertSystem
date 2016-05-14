@@ -10,12 +10,12 @@ namespace WebApp.Core.Factories
 {
     public class AlertsParsersFactory
     {
-        public IAlertsParser CreateParser(string name)
+        public IAlertsParser CreateParser(Source s)
         {
-            switch (name)
+            switch (s.)
             {
                 case "Moldtelecom":
-                    return new MoldtelecomAlertsParser();
+                    return new RssFeed(s);               
                 default:
                     throw new ArgumentException("Unexpected Parser Name " + name);
             }

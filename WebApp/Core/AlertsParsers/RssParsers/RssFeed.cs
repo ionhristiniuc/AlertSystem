@@ -10,18 +10,15 @@ namespace WebApp.Core.AlertsParsers.RssParsers
     public class RssFeed : IAlertsParser
     {
         private string _url;
-        private List<Alert> alerts;
-
-        public RssFeed(String url)
+        
+        public RssFeed(Source source)
         {
-            _url = url;
-            alerts = new List<Alert>();
-
-            ParseAlerts();
+            _url = source.URL;            
         }
 
-        private void ParseAlerts()
+        private List<Alert> ParseAlerts()
         {
+            List<Alert> alerts = new List<Alert>();
             var reader = new FeedReader();
             var items = reader.RetrieveFeed(_url);
 
@@ -33,11 +30,13 @@ namespace WebApp.Core.AlertsParsers.RssParsers
                 alert.Notify_time = i.Date.UtcDateTime;
                 alerts.Add(alert);
             }
+
+            return alerts;
         }
 
         public IEnumerable<Alert> GetAlerts()
-        {           
-            return alerts;
+        {
+            return ParseAlerts();            
         }
     }
 }
