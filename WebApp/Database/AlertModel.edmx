@@ -10,9 +10,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Subject" Type="varchar" MaxLength="100" />
+          <Property Name="Subject" Type="varchar" MaxLength="1000" />
           <Property Name="Short_text" Type="varchar" MaxLength="200" />
-          <Property Name="Text" Type="varchar" MaxLength="1000" />
+          <Property Name="Text" Type="text" />
           <Property Name="Notify_time" Type="datetime" Precision="0" />
           <Property Name="User_id" Type="int" />
           <Property Name="Source_id" Type="int" />
@@ -105,9 +105,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Short_text" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" FixedLength="false" Unicode="false" />
           <Property Name="Notify_time" Type="DateTime" />
           <Property Name="User_id" Type="Int32" />
           <Property Name="Source_id" Type="Int32" />

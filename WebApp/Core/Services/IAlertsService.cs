@@ -9,6 +9,6 @@ namespace WebApp.Core.Services
 {
     public interface IAlertsService
     {
-        IDictionary<string, IAlertsParser> GetAlertsParsers();
+        IDictionary<int, IAlertsParser> GetAlertsParsers();
     }
 }

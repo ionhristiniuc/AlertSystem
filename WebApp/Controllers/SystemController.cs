@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Microsoft.Practices.ObjectBuilder2;
 using WebApp.Core.Services;
 using WebApp.Repositories;
 using WebApp.Database;
@@ -12,6 +13,7 @@ using WebApp.Core.Extensions;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("system")]
     public class SystemController : ApiController
     {
         private readonly IAlertsService _alertsService;
@@ -23,6 +25,8 @@ namespace WebApp.Controllers
             _alertsRepository = alertsRepository;
         }
 
+        [Route("update")]
+        [HttpGet] // TODO should remove
         public IHttpActionResult UpdateAlerts()
         {
             try
@@ -33,6 +37,7 @@ namespace WebApp.Controllers
                 {
                     var alerts = parser.Value.GetAlerts();
                     var newItems = GetNewAlerts(alerts);
+                    newItems.ForEach(i => i.Source_id = parser.Key);
                     _alertsRepository.Add(newItems.ToArray());
                 }
 
@@ -48,7 +53,7 @@ namespace WebApp.Controllers
         {
             var searchKeys = alerts.Select(a => a.GetSearchKey());
             var existItems = _alertsRepository.GetList(a => searchKeys.Contains(a.Search_key));
-            return alerts.Where(a => !existItems.Any(e => a.Search_key == e.Search_key));
+            return alerts.Where(a => existItems.All(e => a.GetSearchKey() != e.Search_key));
         }                           
     }
 }

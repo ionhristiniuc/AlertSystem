@@ -7,11 +7,11 @@ using SimpleFeedReader;
 
 namespace WebApp.Core.AlertsParsers.RssParsers
 {
-    public class RssFeed : IAlertsParser
+    public class RssFeedParser : IAlertsParser
     {
         private string _url;
         
-        public RssFeed(Source source)
+        public RssFeedParser(Source source)
         {
             _url = source.URL;            
         }

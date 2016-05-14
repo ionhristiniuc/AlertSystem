@@ -13,7 +13,7 @@ namespace WebApp
     {
         protected void Application_Start()
         {
-            UnityConfig.RegisterComponents();
+            UnityConfig.RegisterComponents();            
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

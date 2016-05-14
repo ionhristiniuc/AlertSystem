@@ -183,10 +183,12 @@
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
     <Compile Include="Core\AlertsParsers\RssParsers\MoldtelecomAlertsParser.cs" />
+    <Compile Include="Core\Enums\ParserTypesEnum.cs" />
+    <Compile Include="Core\Extensions\AlertsExtensions.cs" />
     <Compile Include="Core\Factories\AlertsParsersFactory.cs" />
     <Compile Include="Core\Services\AlertsService.cs" />
     <Compile Include="Core\Services\IAlertsService.cs" />
-    <Compile Include="Core\AlertsParsers\RssParsers\RssFeed.cs" />
+    <Compile Include="Core\AlertsParsers\RssParsers\RssFeedParser.cs" />
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -194,6 +196,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AlertModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AlertModel.Designer.cs">
       <AutoGen>True</AutoGen>

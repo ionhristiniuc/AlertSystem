@@ -11,7 +11,7 @@ namespace WebApp.Core.Services
     {
         private readonly ISourcesRepository _sourcesRepository;
         private Dictionary<int, Source> _alertsSources;
-        private Dictionary<string, IAlertsParser> _alertsParsers;
+        private Dictionary<int, IAlertsParser> _alertsParsers;
 
         public AlertsService(ISourcesRepository sourcesRepository)
         {
@@ -25,16 +25,16 @@ namespace WebApp.Core.Services
                 .ToDictionary(s => s.Id);
 
             var parsersFactory = new AlertsParsersFactory();
-            _alertsParsers = new Dictionary<string, IAlertsParser>();
+            _alertsParsers = new Dictionary<int, IAlertsParser>();
 
             foreach (var source in _alertsSources)
             {
                 IAlertsParser parser = parsersFactory.CreateParser(source.Value);
-                _alertsParsers.Add(source.Value.Name, parser);
+                _alertsParsers.Add(source.Key, parser);
             }
         }
 
-        public IDictionary<string, IAlertsParser> GetAlertsParsers()
+        public IDictionary<int, IAlertsParser> GetAlertsParsers()
         {
             return _alertsParsers;
         }
