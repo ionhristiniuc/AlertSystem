@@ -81,6 +81,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleFeedReader, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleFeedReader.1.0.4.0\lib\net40-client\SimpleFeedReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -178,6 +182,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
+    <Compile Include="Core\AlertsParsers\RssParsers\RssFeed.cs" />
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -241,6 +246,7 @@
     <Content Include="Database\AlertModel.edmx.diagram">
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Documentation.chm" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -272,7 +278,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Core\AlertsParsers\ApiParsers\" />
     <Folder Include="Core\AlertsParsers\HtmlParsers\" />
-    <Folder Include="Core\AlertsParsers\RssParsers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Alerts\" />
   </ItemGroup>
