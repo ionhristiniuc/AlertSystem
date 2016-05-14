@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace FXM.BO.Core.Utils
+namespace Core.Utils
 {
     public class JavaScriptConvert
     {

@@ -206,7 +206,7 @@ var MapsGoogle = function () {
         //main function to initiate map samples
         init: function () {
             //mapBasic();
-            mapMarker();
+            //mapMarker();
             mapGeolocation();
             mapGeocoding();
             mapPolylines();
