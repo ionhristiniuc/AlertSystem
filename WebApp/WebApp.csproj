@@ -187,7 +187,6 @@
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Core\AlertsParsers\HtmlParsers\GasFenosaParser.cs" />
     <Compile Include="Core\AlertsParsers\IAlertsParser.cs" />
-    <Compile Include="Core\AlertsParsers\RssParsers\MoldtelecomAlertsParser.cs" />
     <Compile Include="Core\Enums\ParserTypesEnum.cs" />
     <Compile Include="Core\Extensions\AlertsExtensions.cs" />
     <Compile Include="Core\Factories\AlertsParsersFactory.cs" />

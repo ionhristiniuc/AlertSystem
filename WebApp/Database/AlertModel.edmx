@@ -10,13 +10,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Subject" Type="varchar" MaxLength="1000" />
-          <Property Name="Short_text" Type="varchar" MaxLength="200" />
-          <Property Name="Text" Type="text" />
+          <Property Name="Subject" Type="varchar" MaxLength="100" />
+          <Property Name="Short_text" Type="text" />
+          <Property Name="Text" Type="varchar" MaxLength="1000" />
           <Property Name="Notify_time" Type="datetime" Precision="0" />
           <Property Name="User_id" Type="int" />
           <Property Name="Source_id" Type="int" />
-          <Property Name="Search_key" Type="varchar" MaxLength="200" />
+          <Property Name="Search_key" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="parser_types">
           <Key>
@@ -106,14 +106,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Subject" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Short_text" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Short_text" Type="String" FixedLength="false" Unicode="false" />
           <Property Name="Text" Type="String" FixedLength="false" Unicode="false" />
           <Property Name="Notify_time" Type="DateTime" />
           <Property Name="User_id" Type="Int32" />
           <Property Name="Source_id" Type="Int32" />
           <NavigationProperty Name="Source" Relationship="Self.fk_alert_source1" FromRole="alert" ToRole="source" />
           <NavigationProperty Name="User" Relationship="Self.fk_alert_user" FromRole="alert" ToRole="user" />
-          <Property Name="Search_key" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Search_key" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
