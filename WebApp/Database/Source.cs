@@ -22,7 +22,9 @@ namespace WebApp.Database
         public int Id { get; set; }
         public string Name { get; set; }
         public string URL { get; set; }
+        public string ParserType { get; set; }
     
         public virtual ICollection<Alert> Alerts { get; set; }
+        public virtual ParserTypes ParserTypes { get; set; }
     }
 }
