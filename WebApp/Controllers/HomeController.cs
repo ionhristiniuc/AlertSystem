@@ -22,7 +22,11 @@ namespace WebApp.Controllers
         {
             //var users = _usersRepository.GetList(u => u.id < 9);
             var alerts = _alertRepository.GetAll();
-            ViewBag.alerts = alerts.OrderByDescending(x => x.Notify_time).Take(10).Select(x => new AlertModel(x)).ToList();
+            var unreadAlerts = _alertRepository.GetUnreadAlerts(int.Parse(User.Identity.Name));
+            ViewBag.unreadAlertsCount = unreadAlerts.Count();
+            ViewBag.alerts = alerts
+                .OrderByDescending(x => x.Notify_time).Take(10)
+                .Select(x => new AlertModel(x, unreadAlerts.Any(u => u.Id == x.Id))).ToList();
 
             return View();
         }

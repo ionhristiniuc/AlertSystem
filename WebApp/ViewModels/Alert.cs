@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApp.Database;
 
 namespace WebApp.ViewModels
 {
@@ -15,8 +16,9 @@ namespace WebApp.ViewModels
         public Nullable<int> User_id { get; set; }
         public Nullable<int> Source_id { get; set; }
         public string Address { get; set; }
+        public bool IsUnread { get; set; }
 
-        public AlertModel(Database.Alert alert)
+        public AlertModel(Alert alert, bool isUnread)
         {
             Id = alert.Id;
             Subject = alert.Subject;
@@ -26,6 +28,7 @@ namespace WebApp.ViewModels
             User_id = alert.User_id;
             Source_id = alert.Source_id;
             Address = alert.Address;
+            IsUnread = IsUnread;
         }
     }
 }
