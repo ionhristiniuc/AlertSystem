@@ -46,7 +46,7 @@ namespace WebApp.Controllers
             {
                 var identity = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, model.Username),
+                    new Claim(ClaimTypes.Name, user.id.ToString()),
                 },
                     DefaultAuthenticationTypes.ApplicationCookie,
                     ClaimTypes.Name, ClaimTypes.Role);

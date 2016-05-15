@@ -25,8 +25,10 @@ var MapsGoogle = function () {
         div: '#gmap_basic',
         lat: latitude,
         lng: longitude,
-        zoom: 10
+        zoom: 13
     });
+
+
 
     map.addMarker({
         lat: latitude,
@@ -35,24 +37,28 @@ var MapsGoogle = function () {
             content: '<p></p>'
         }
     })
+
     var geocoder = new google.maps.Geocoder();
-    var address = "Chisinau, Alexandru Hajdeu, 98/1";
+    for (var i = 0; i < alerts.length; i++) {
 
-    geocoder.geocode({ 'address': address }, function (results, status) {
+        var address = alerts[i].Address;
+        var subject = alerts[i].Subject; 
 
-        if (status == google.maps.GeocoderStatus.OK) {
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
-            map.addMarker({
-                lat: latitude,
-                lng: longitude,
-                infoWindow: {
-                    content: '<p>Hijdeu 98/1</p>'
-                }
-            })
-        }
-    });
+        geocoder.geocode({ 'address': 'Chisinau,' + address }, function(results, status) {
 
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                map.addMarker({
+                    lat: latitude,
+                    lng: longitude,
+                    infoWindow: {
+                        content: '<p>'+ subject +'</p>'
+                    }
+                })
+            }
+        });
+    }
 
     var mapPolylines = function () {
         var map = new GMaps({

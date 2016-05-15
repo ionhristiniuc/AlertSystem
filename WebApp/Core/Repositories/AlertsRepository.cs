@@ -17,5 +17,49 @@ namespace WebApp.Repositories
 
             base.Add(items);
         }
+
+        public IEnumerable<Alert> GetUnreadAlerts(int userId)
+        {
+            using (var dbModel = new alertSystemEntities())
+            {
+                var res = from a in dbModel.Alerts
+                          join uaq in dbModel.UserAlertQueue on 
+                          new
+                          {
+                              AlertId = a.Id,
+                              UserId = userId
+                          }
+                          equals
+                          new
+                          {
+                              AlertId = uaq.AlertId,
+                              UserId = uaq.UserId
+                          }
+                          into oj
+                          from sub in oj.DefaultIfEmpty()
+                          where sub.Id == null
+                          select a;
+
+                return res.ToList();
+            }
+        }
+
+        public void MarkAlertAsRead(int userId, int alertId)
+        {
+            IGenericRepository<UserAlertQueue> repo = new GenericRepository<UserAlertQueue>();
+            var existentObj = repo.GetSingle(uaq => uaq.AlertId == alertId && uaq.UserId == userId);
+
+            if (existentObj == null)
+            {
+                var uaq = new UserAlertQueue()
+                {
+                    AlertId = alertId,
+                    UserId = userId,
+                    ViewedOn = DateTime.UtcNow
+                };
+
+                repo.Add(uaq);                
+            }
+        }
     }
 }

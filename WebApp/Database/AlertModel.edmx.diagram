@@ -10,10 +10,13 @@
         <EntityTypeShape EntityType="alertSystemModel.User" Width="1.5" PointX="7.625" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="alertSystemModel.fk_alert_source1" ManuallyRouted="false" />
         <AssociationConnector Association="alertSystemModel.fk_alert_user" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="alertSystemModel.ParserTypes" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="alertSystemModel.ParserTypes" Width="1.5" PointX="1.25" PointY="7.375" />
         <AssociationConnector Association="alertSystemModel.FK_source_ParserType_parser_types_Type" />
-        <EntityTypeShape EntityType="alertSystemModel.alert_category" Width="1.5" PointX="5.375" PointY="0.875" />
+        <EntityTypeShape EntityType="alertSystemModel.AlertCategory" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="alertSystemModel.fk_alert_alert_category1" />
+        <EntityTypeShape EntityType="alertSystemModel.UserAlertQueue" Width="1.5" PointX="9.875" PointY="2.25" />
+        <AssociationConnector Association="alertSystemModel.FK_uaq_AlertId_alert_Id" />
+        <AssociationConnector Association="alertSystemModel.FK_uaq_UserId_user_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

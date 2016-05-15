@@ -12,20 +12,14 @@ namespace WebApp.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserAlertQueue
     {
-        public User()
-        {
-            this.Alerts = new HashSet<Alert>();
-            this.UserAlertQueue = new HashSet<UserAlertQueue>();
-        }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int AlertId { get; set; }
+        public System.DateTime ViewedOn { get; set; }
     
-        public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string username { get; set; }
-    
-        public virtual ICollection<Alert> Alerts { get; set; }
-        public virtual ICollection<UserAlertQueue> UserAlertQueue { get; set; }
+        public virtual Alert Alert { get; set; }
+        public virtual User User { get; set; }
     }
 }
