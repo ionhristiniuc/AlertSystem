@@ -13,7 +13,7 @@ namespace WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        private IUsersRepository _usersRepository;
+        private readonly IUsersRepository _usersRepository;
             
         public AccountController(IUsersRepository usersRepository)
         {

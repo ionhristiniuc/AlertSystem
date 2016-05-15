@@ -30,6 +30,8 @@ namespace WebApp.Database
         public string Address { get; set; }
         public string Alert_category { get; set; }
         public Nullable<int> Raiting { get; set; }
+        public string Link { get; set; }
+        public Nullable<System.DateTime> InsertedOn { get; set; }
     
         public virtual Source Source { get; set; }
         public virtual User User { get; set; }
