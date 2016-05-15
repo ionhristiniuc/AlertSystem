@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApp.Core.Enums
 {
-    public enum AlertCategory
+    public enum AlertCategoryEnum
     {
         Evenimente,
         Meteo,

@@ -19,6 +19,11 @@ namespace WebApp.Core.Services
             Initialize();
         }
 
+        public Source GetSourceById(int? id)
+        {
+            return _sourcesRepository.GetAll().Where(s => s.Id == id).First();
+        }
+
         private void Initialize()
         {
             _alertsSources = _sourcesRepository.GetAll()
