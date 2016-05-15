@@ -90,7 +90,7 @@
             <div class="display">
                 <div class="number">
                     <h3 class="font-green-sharp">
-                        <span data-counter="counterup" data-value="7800">@if (@ViewBag.isAuhtenticated) { @ViewBag.serviciiComunaleAlerts }</span>
+                        <span  class="servComunPendingCount" data-counter="counterup" data-value="7800">@if (@ViewBag.isAuhtenticated) { @ViewBag.serviciiComunaleAlerts }</span>
                     </h3>                   
                     <small>Servicii Comunale</small>
                 </div>
@@ -108,7 +108,7 @@
             <div class="display">
                 <div class="number">
                     <h3 class="font-red-haze">
-                        <span data-counter="counterup" data-value="1349">@if (@ViewBag.isAuhtenticated) { @ViewBag.meteoAlerts }</span>
+                        <span data-counter="counterup" class="meteoAlerts" data-value="1349">@if (@ViewBag.isAuhtenticated) { @ViewBag.meteoAlerts }</span>
                     </h3>
                     <small>Meteo</small>
                 </div>
@@ -127,7 +127,7 @@
             <div class="display">
                 <div class="number">
                     <h3 class="font-purple-soft">
-                        <span data-counter="counterup" data-value="1349">@if (@ViewBag.isAuhtenticated) { @ViewBag.evetAlerts }</span>
+                        <span data-counter="counterup" class="evetAlerts" data-value="1349">@if (@ViewBag.isAuhtenticated) { @ViewBag.evetAlerts }</span>
                     </h3>
                     <small>Evenimente</small>
                 </div>
@@ -145,7 +145,7 @@
             <div class="display">
                 <div class="number">
                     <h3 class="font-yellow-mint">
-                        <span data-counter="counterup" data-value="1349"> @if (@ViewBag.isAuhtenticated) { @ViewBag.transportAlerts }</span>
+                        <span data-counter="counterup" class="transportAlerts" data-value="1349"> @if (@ViewBag.isAuhtenticated) { @ViewBag.transportAlerts }</span>
                     </h3>
                     <small>Transport</small>
                 </div>
@@ -218,14 +218,14 @@
                                                         <div class="item-head">
                                                             <div class="item-details">
                                                                 @IconHelper.PrintTypeIcon(alert.Type)
-                                                                <a class="item-name primary-link" @(!string.IsNullOrEmpty(alert.Link) ? "href=" + alert.Link : string.Empty)>
+                                                                <a class="item-name primary-link alterTitle" style="@(alert.IsUnread ? "font-weight: bold" : "font-weight: normal")"  @(!string.IsNullOrEmpty(alert.Link) ? "href=" + alert.Link : string.Empty) data-alertId="@alert.Id">
                                                                     @if (alert.IsUnread)
                                                                     {
-                                                                        <b>@alert.Subject</b>
+                                                                        @alert.Subject
                                                                     }
                                                                     else
                                                                     {
-                                                                        @alert.Subject;
+                                                                        @alert.Subject
                                                                     }
                                                                 </a>
                                                                 <span class="item-label">@alert.Notify_time</span>
@@ -358,7 +358,50 @@
 <script src="/Content/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="/Content/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/Content/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $('document').ready(function() {
+            //alert("init");
+            $(".alterTitle").click(function() {
+                var a = $(this);
+                //var id = a.data("alertId");
+                var strId = a.attr("data-alertId");
+
+                $.post('/Alerts/MarkAlertAsRead',
+                { alertId: strId },
+                function(data) {
+                    if (data != null) {
+
+                        $('.unreadAlertsCount').each(function(index) {
+                            $(this).text(data.totalPendingCount);
+                        });
+
+                        $('.servComunPendingCount').each(function(index) {
+                            $(this).text(data.servComunPendingCount);
+                        });
+
+                        $('.meteoAlerts').each(function(index) {
+                            $(this).text(data.meteoAlerts);
+                        });
+
+                        $('.transportAlerts').each(function(index) {
+                            $(this).text(data.transportAlerts);
+                        });
+
+                        $('.evetAlerts').each(function(index) {
+                            $(this).text(data.evetAlerts);                            
+                        });
+
+                        a.css('font-weight', 'normal');
+                    } else {
+                        alert("An error occurred");
+                    }
+                });
+            });
+        });
+    </script>
+
 <script src="/Content/assets/global/plugins/moment.min.js" type="text/javascript"></script>
 <script src="/Content/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
 <script src="/Content/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
@@ -405,10 +448,11 @@
 <script src="/Content/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 
     <script src="/Content/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
-    <script src="/Content/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
-<!-- END THEME LAYOUT SCRIPTS -->
+<script src="/Content/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+@*<script src="/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>*@    
+<!-- END THEME LAYOUT SCRIPTS -->    
 
-    <div id="responsive" class="modal fade"  data-width="760" >
+<div id="responsive" class="modal fade"  data-width="760" >
     @Html.Partial("~/Views/Alerts/_AlertDetails.cshtml")
 </div>
 </body>

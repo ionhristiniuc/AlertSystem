@@ -31,7 +31,7 @@ namespace WebApp.ViewModels
             User_id = alert.User_id;
             Source_id = alert.Source_id;
             Address = alert.Address;
-            IsUnread = IsUnread;
+            IsUnread = isUnread;
             Type = alert.Alert_category;            
             Link = alert.Link;            
         }

@@ -31,7 +31,7 @@ namespace WebApp.Controllers
                 var unreadAlerts = _alertRepository.GetUnreadAlerts(int.Parse(userId));
                 ViewBag.unreadAlertsCount = unreadAlerts.Count();
                 ViewBag.alerts = alerts
-                    .OrderByDescending(x => x.Notify_time).Take(10)
+                    .OrderByDescending(x => x.Notify_time)
                     .Select(x => new AlertModel(x, unreadAlerts.Any(u => u.Id == x.Id))).ToList();
 
                 ViewBag.isAuhtenticated = true;
@@ -46,7 +46,7 @@ namespace WebApp.Controllers
                 ViewBag.isAuhtenticated = false;
  
                 ViewBag.alerts = alerts
-                    .OrderByDescending(x => x.Notify_time).Take(10)
+                    .OrderByDescending(x => x.Notify_time)
                     .Select(x => new AlertModel(x, true)).ToList();
 
             }

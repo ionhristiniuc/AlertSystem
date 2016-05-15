@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
@@ -53,18 +54,34 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public virtual JsonResult MarkAlertAsRead(int userId, int alertId)
+        [HttpPost]        
+        public virtual JsonResult MarkAlertAsRead(int alertId)
         {
             try
             {
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+
+                if (claimsIdentity == null)
+                    return Json(null, JsonRequestBehavior.DenyGet);
+
+                var userId = int.Parse(claimsIdentity.Name);
                 _alertsRepository.MarkAlertAsRead(userId, alertId);
-                return Json(true, JsonRequestBehavior.DenyGet);
+
+                var pendingAlerts = _alertsRepository.GetUnreadAlerts(userId);
+                var result = new
+                {
+                    totalPendingCount = pendingAlerts.Count(),
+                    servComunPendingCount = pendingAlerts.Where(a => a.Alert_category == "ServiciiComunale").Count(),
+                    meteoAlerts = pendingAlerts.Where(a => a.Alert_category == "Meteo").Count(),
+                    transportAlerts = pendingAlerts.Where(a => a.Alert_category == "Transport").Count(),
+                    evetAlerts = pendingAlerts.Where(a => a.Alert_category == "Evenimente").Count()
+                };              
+                return Json(result, JsonRequestBehavior.DenyGet);
             }
             catch (Exception e)
             {
                 Trace.TraceError(e.ToString());
-                return Json(false, JsonRequestBehavior.DenyGet);
+                return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
     }

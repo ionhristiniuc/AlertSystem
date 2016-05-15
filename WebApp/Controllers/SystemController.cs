@@ -26,7 +26,8 @@ namespace WebApp.Controllers
         }
 
         [Route("update")]
-        [HttpPost]
+        //[HttpPost]
+        [HttpGet]
         public IHttpActionResult UpdateAlerts()
         {
             try

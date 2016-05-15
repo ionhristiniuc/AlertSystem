@@ -42,7 +42,7 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
                 yield return new Alert
                 {
                     Subject = subject,
-                    Short_text = text,
+                    Text = text,
                     Source_id = _source.Id,                                        
                     Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null), 
                     Link = link,
