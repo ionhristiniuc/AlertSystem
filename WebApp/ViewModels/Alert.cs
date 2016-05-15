@@ -33,5 +33,10 @@ namespace WebApp.ViewModels
             IsUnread = IsUnread;
             Type = alert.Alert_category;            
         }
+
+        public AlertModel()
+        {
+            
+        }
     }
 }

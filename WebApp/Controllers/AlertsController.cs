@@ -29,7 +29,9 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                TempData["alert"] = model;
+                return RedirectToAction("Index","Home");
+               
             }
 
             var alert = new Alert()
