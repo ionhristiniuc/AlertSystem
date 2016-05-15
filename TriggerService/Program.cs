@@ -17,7 +17,7 @@ namespace TriggerService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new DataUpdateService()
             };
             ServiceBase.Run(ServicesToRun);
         }
