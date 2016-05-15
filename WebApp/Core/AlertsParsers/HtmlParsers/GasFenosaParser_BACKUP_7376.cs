@@ -43,10 +43,15 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
                 {
                     Subject = subject,
                     Short_text = text,
+<<<<<<< HEAD
+                    Source_id = _source.Id,
+                    Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null),
+                    Alert_category = AlertCategoryEnum.ServiciiComunale.ToString()
+=======
                     Source_id = _source.Id,                                        
                     Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null), 
-                    Link = link,
-                    Alert_category = AlertCategoryEnum.ServiciiComunale.ToString()
+                    Link = link
+>>>>>>> a9edf147146ab6cb5b85edc47f1be8b229bbe78b
                 };
             }
         }

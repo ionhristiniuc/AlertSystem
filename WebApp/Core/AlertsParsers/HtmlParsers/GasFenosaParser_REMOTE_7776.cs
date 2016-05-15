@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using HtmlAgilityPack;
 using WebApp.Database;
-using WebApp.Core.Enums;
 
 namespace WebApp.Core.AlertsParsers.HtmlParsers
 {
@@ -45,8 +44,7 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
                     Short_text = text,
                     Source_id = _source.Id,                                        
                     Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null), 
-                    Link = link,
-                    Alert_category = AlertCategoryEnum.ServiciiComunale.ToString()
+                    Link = link
                 };
             }
         }

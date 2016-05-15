@@ -37,6 +37,7 @@ namespace WebApp.Controllers
                 {
                     var alerts = parser.Value.GetAlerts();
                     alerts.ForEach(i => i.Source_id = parser.Key);
+                    alerts.ForEach(i => i.Alert_category = GetTypeBySource(_alertsService.GetSourceById(i.Source_id)));
                     var newItems = GetNewAlerts(alerts);                    
                     _alertsRepository.Add(newItems.ToArray());
                 }
@@ -47,6 +48,23 @@ namespace WebApp.Controllers
             {
                 return InternalServerError(e);
             }            
+        }
+
+        private string GetTypeBySource(Source source)
+        {
+            switch (source.Name)
+            {
+                case "MoldtelecomRSS":
+                    return Core.Enums.AlertCategoryEnum.ServiciiComunale.ToString();
+                case "GazNaturalFenosaHtml":
+                    return Core.Enums.AlertCategoryEnum.ServiciiComunale.ToString();
+                case "MeteoRSS":
+                    return Core.Enums.AlertCategoryEnum.Meteo.ToString();
+                default:
+                    return null;                    
+            }
+
+            //Alert_category = AlertCategoryEnum.ServiciiComunale.ToString()
         }
 
         private IEnumerable<Alert> GetNewAlerts(IEnumerable<Alert> alerts)
