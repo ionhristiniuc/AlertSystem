@@ -19,6 +19,7 @@ namespace WebApp.ViewModels
         public bool IsUnread { get; set; }
         public string Type { get; set; }
         public string Category { get; set; }
+        public string Link { get; set; }
 
         public AlertModel(Alert alert, bool isUnread)
         {
@@ -32,6 +33,7 @@ namespace WebApp.ViewModels
             Address = alert.Address;
             IsUnread = IsUnread;
             Type = alert.Alert_category;            
+            Link = alert.Link;            
         }
     }
 }
