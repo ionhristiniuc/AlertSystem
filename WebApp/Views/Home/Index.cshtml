@@ -1,4 +1,5 @@
-﻿@model List<WebApp.ViewModels.AlertModel>
+﻿
+@model List<WebApp.ViewModels.AlertModel>
     @{
         var notifications = ViewBag.alerts as List<WebApp.ViewModels.AlertModel>;
         var unreadAlertsCount = ViewBag.unreadAlertsCount;
@@ -49,137 +50,7 @@
 <!-- END HEAD -->
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
-<div class="page-header navbar navbar-fixed-top">
-    <!-- BEGIN HEADER INNER -->
-    <div class="page-header-inner ">
-        <!-- BEGIN LOGO -->
-        <div class="page-logo">
-            <a href="index.html">
-            </a>
-            <div class="menu-toggler sidebar-toggler">
-                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
-            </div>
-        </div>
-        <!-- END LOGO -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN PAGE TOP -->
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class="page-top">
-                <!-- BEGIN HEADER SEARCH BOX -->
-                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-                <!-- END HEADER SEARCH BOX -->
-                <!-- BEGIN TOP NAVIGATION MENU -->
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="separator hide"> </li>
-                        <!-- BEGIN NOTIFICATION DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icon-bell"></i>
-                                <span class="badge badge-success"> @unreadAlertsCount </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        <span class="bold">12 pending</span> notifications
-                                    </h3>
-                                    <a href="#feedsIt">view all</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- END NOTIFICATION DROPDOWN -->
-                        <li class="separator hide"> </li>
-                        <!-- BEGIN INBOX DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        You have
-                                        <span class="bold">7 New</span> Messages
-                                    </h3>
-                                    <a href="app_inbox.html">view all</a>
-                                </li>
-                                <li>
-                                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="/Content/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">Just Now </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="/Content/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">16 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="/Content/assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Bob Nilson </span>
-                                                    <span class="time">2 hrs </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="/Content/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">40 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="/Content/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">46 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- END INBOX DROPDOWN -->
-                        
-                    </ul>
-                </div>
-                <!-- END TOP NAVIGATION MENU -->
-            </div>
-        }
-        <!-- END PAGE TOP -->
-    </div>
-    <!-- END HEADER INNER -->
-</div>
+
 <!-- END HEADER -->
 <!-- BEGIN HEADER & CONTENT DIVIDER -->
 <div class="clearfix"> </div>
@@ -220,7 +91,7 @@
             <div class="display">
                 <div class="number">
                     <h3 class="font-green-sharp">
-                        <span data-counter="counterup" data-value="7800">@if (@ViewBag.isAuhtenticated) { @ViewBag.evetAlerts }</span>
+                        <span data-counter="counterup" data-value="7800">@if (@ViewBag.isAuhtenticated) { @ViewBag.serviciiComunaleAlerts }</span>
                     </h3>                   
                     <small>Servicii Comunale</small>
                 </div>
@@ -341,26 +212,26 @@
                                     <div class="portlet-body">
                                     <div class="scroller" s data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                         <div class="general-item-list">
-                                            @foreach (var alert in notifications.OrderByDescending(x => x.Notify_time))
-                                            {
+                                    @foreach (var alert in notifications.OrderByDescending(x => x.Notify_time))
+                                    {
 
                                                 <div class="item">
                                                     <div class="item-head">
                                                         <div class="item-details">
-                                                            @IconHelper.PrintTypeIcon(alert.Type)
+                                                        @IconHelper.PrintTypeIcon(alert.Type)
                                                             <a class="item-name primary-link">@alert.Subject</a>
                                                             <span class="item-label">@alert.Notify_time</span>
-                                                        </div>
+                                                    </div>
                                                         <span class="item-status">
                                                                 <span class="badge badge-empty badge-success"></span> @alert.Type
-                                                            </span>
-                                                    </div>
+                                                                            </span>
+                                                        </div>
                                                     <div class="item-body">@alert.Text</div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                        </div>
+                                                    </div>
+                                    }
+                                                                </div>
+                                                            </div>
+                                                            </div>
 
                                 </ul>
                             </div>
@@ -446,7 +317,7 @@
 </div>
 <!-- END CONTENT -->
 </div>
-</div>
+                </div>
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
