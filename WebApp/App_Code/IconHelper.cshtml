@@ -7,27 +7,27 @@
 switch (activityType)
 {
     case "Evenimente":
-        <div class="label label-sm label-danger"><i class="fa fa-bell-o"></i>
+        <div><span aria-hidden="true" class="icon-calendar"></span> 
         </div>
         break;
     case "Meteo":
-        <div class="label label-sm label-success">
-            <i class="fa fa-bolt"></i>
-        </div>
+            <div>
+                <span aria-hidden="true" class="icon-drop"></span>
+            </div>
         break;
     case "ServiciiComunale":
-            <div class="label label-sm label-warning">
-                <i class="fa fa-bullhorn"></i>
+            <div>
+                <span aria-hidden="true" class="icon-home"></span>
             </div>
         break;
     case "Transport":
-            <div class="label label-sm label-info">
-                <i class="fa fa-bolt"></i>
+            <div>
+                <span aria-hidden="true" class="icon-basket"></span>
             </div>
         break;
     default:
-            <div class="label label-sm label-danger">
-                <i class="fa fa-bolt"></i>
+            <div>
+                <span aria-hidden="true" class="icon-calendar"></span>
             </div>
         break;
 }
