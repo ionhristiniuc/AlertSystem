@@ -9,5 +9,7 @@ namespace WebApp.Repositories
 {
     public interface IAlertsRepository : IGenericRepository<Alert>
     {
+        IEnumerable<Alert> GetUnreadAlerts(int userId);
+        void MarkAlertAsRead(int userId, int alertId);
     }
 }

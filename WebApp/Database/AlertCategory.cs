@@ -12,15 +12,15 @@ namespace WebApp.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class alert_category
+    public partial class AlertCategory
     {
-        public alert_category()
+        public AlertCategory()
         {
-            this.alerts = new HashSet<Alert>();
+            this.Alerts = new HashSet<Alert>();
         }
     
         public string Category { get; set; }
     
-        public virtual ICollection<Alert> alerts { get; set; }
+        public virtual ICollection<Alert> Alerts { get; set; }
     }
 }

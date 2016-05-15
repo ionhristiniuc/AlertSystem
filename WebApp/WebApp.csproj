@@ -210,6 +210,9 @@
     <Compile Include="Database\Alert.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\AlertCategory.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\AlertModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,9 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\alert_category.cs">
-      <DependentUpon>AlertModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\ParserTypes.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -235,6 +235,9 @@
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\User.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserAlertQueue.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -5875,6 +5878,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Alerts\_AlertDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -5882,7 +5886,6 @@
     <Folder Include="Content\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="Core\AlertsParsers\ApiParsers\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Alerts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

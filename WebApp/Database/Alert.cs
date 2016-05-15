@@ -14,6 +14,11 @@ namespace WebApp.Database
     
     public partial class Alert
     {
+        public Alert()
+        {
+            this.UserAlertQueue = new HashSet<UserAlertQueue>();
+        }
+    
         public int Id { get; set; }
         public string Subject { get; set; }
         public string Short_text { get; set; }
@@ -28,6 +33,7 @@ namespace WebApp.Database
     
         public virtual Source Source { get; set; }
         public virtual User User { get; set; }
-        public virtual alert_category alert_category1 { get; set; }
+        public virtual AlertCategory AlertCategory { get; set; }
+        public virtual ICollection<UserAlertQueue> UserAlertQueue { get; set; }
     }
 }
