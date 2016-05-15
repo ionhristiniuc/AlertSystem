@@ -18,7 +18,8 @@ namespace WebApp.Database
         {
             this.UserAlertQueue = new HashSet<UserAlertQueue>();
         }
-    
+
+
         public int Id { get; set; }
         public string Subject { get; set; }
         public string Short_text { get; set; }

@@ -35,5 +35,10 @@ namespace WebApp.ViewModels
             Type = alert.Alert_category;            
             Link = alert.Link;            
         }
+
+        public AlertModel()
+        {
+            
+        }
     }
 }

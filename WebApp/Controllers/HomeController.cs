@@ -27,6 +27,7 @@ namespace WebApp.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userId = (User.Identity as ClaimsIdentity).Name;
+                ViewBag.UserId = userId;
                 var unreadAlerts = _alertRepository.GetUnreadAlerts(int.Parse(userId));
                 ViewBag.unreadAlertsCount = unreadAlerts.Count();
                 ViewBag.alerts = alerts
