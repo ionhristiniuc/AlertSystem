@@ -43,7 +43,8 @@ namespace WebApp.Core.AlertsParsers.HtmlParsers
                     Subject = subject,
                     Short_text = text,
                     Source_id = _source.Id,                                        
-                    Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null),                                                                                
+                    Notify_time = DateTime.ParseExact(timeText, "dd.mm.yyyy", null), 
+                    Link = link
                 };
             }
         }
