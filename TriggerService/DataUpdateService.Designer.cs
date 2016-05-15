@@ -1,6 +1,6 @@
 ﻿namespace TriggerService
 {
-    partial class Service1
+    partial class DataUpdateService
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // DataUpdateService
+            // 
+            this.ServiceName = "DdataUpdateService";
+
         }
 
         #endregion

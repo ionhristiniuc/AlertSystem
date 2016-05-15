@@ -26,7 +26,7 @@ namespace WebApp.Controllers
         }
 
         [Route("update")]
-        [HttpGet] // TODO should remove
+        [HttpPost]
         public IHttpActionResult UpdateAlerts()
         {
             try
