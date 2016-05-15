@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using WebApp.Database;
 using WebApp.Repositories;
@@ -47,6 +49,21 @@ namespace WebApp.Controllers
             _alertsRepository.Add(alert);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public virtual JsonResult MarkAlertAsRead(int userId, int alertId)
+        {
+            try
+            {
+                _alertsRepository.MarkAlertAsRead(userId, alertId);
+                return Json(true, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError(e.ToString());
+                return Json(false, JsonRequestBehavior.DenyGet);
+            }
         }
     }
 }
