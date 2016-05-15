@@ -33,14 +33,17 @@ namespace WebApp.Controllers
                     .OrderByDescending(x => x.Notify_time).Take(10)
                     .Select(x => new AlertModel(x, unreadAlerts.Any(u => u.Id == x.Id))).ToList();
 
-            }
-            else
-            {
+                ViewBag.isAuhtenticated = true;
                 ViewBag.evetAlerts = alerts.Where(a => a.Alert_category == "Evenimente").Count();
                 ViewBag.serviciiComunaleAlerts = alerts.Where(a => a.Alert_category == "ServiciiComunale").Count();
                 ViewBag.meteoAlerts = alerts.Where(a => a.Alert_category == "Meteo").Count();
                 ViewBag.transportAlerts = alerts.Where(a => a.Alert_category == "Transport").Count();
 
+            }
+            else
+            {
+                ViewBag.isAuhtenticated = false;
+ 
                 ViewBag.alerts = alerts
                     .OrderByDescending(x => x.Notify_time).Take(10)
                     .Select(x => new AlertModel(x, true)).ToList();
