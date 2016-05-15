@@ -13,7 +13,10 @@ namespace WebApp.Repositories
         public void Add(params Alert[] items)
         {
             foreach (var alert in items)
+            {
                 alert.Search_key = alert.GetSearchKey();
+                alert.InsertedOn = DateTime.UtcNow;
+            }
 
             base.Add(items);
         }

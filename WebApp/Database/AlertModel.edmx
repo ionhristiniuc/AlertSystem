@@ -20,6 +20,8 @@
           <Property Name="Address" Type="varchar" MaxLength="500" />
           <Property Name="Alert_category" Type="varchar" MaxLength="100" />
           <Property Name="Raiting" Type="int" />
+          <Property Name="Link" Type="varchar" MaxLength="500" />
+          <Property Name="InsertedOn" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="alert_category">
           <Key>
@@ -187,6 +189,8 @@
           <Property Name="Raiting" Type="Int32" />
           <NavigationProperty Name="AlertCategory" Relationship="alertSystemModel.fk_alert_alert_category1" FromRole="Alert" ToRole="alert_category" />
           <NavigationProperty Name="UserAlertQueue" Relationship="alertSystemModel.FK_uaq_AlertId_alert_Id" FromRole="Alert" ToRole="user_alert_queue" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedOn" Type="DateTime" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -348,6 +352,8 @@
           <EntitySetMapping Name="Alerts">
             <EntityTypeMapping TypeName="alertSystemModel.Alert">
               <MappingFragment StoreEntitySet="alert">
+                <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="Raiting" ColumnName="Raiting" />
                 <ScalarProperty Name="Alert_category" ColumnName="Alert_category" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
