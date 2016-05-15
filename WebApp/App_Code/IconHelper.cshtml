@@ -1,0 +1,34 @@
+﻿@using System.Threading
+@using System.Web.Mvc;
+@using Microsoft.Ajax.Utilities
+
+@helper PrintTypeIcon(string activityType)
+{   
+switch (activityType)
+{
+    case "Evenimente":
+        <div class="label label-sm label-danger"><i class="fa fa-bell-o"></i>
+        </div>
+        break;
+    case "Meteo":
+        <div class="label label-sm label-success">
+            <i class="fa fa-bolt"></i>
+        </div>
+        break;
+    case "ServiciiComunale":
+            <div class="label label-sm label-warning">
+                <i class="fa fa-bullhorn"></i>
+            </div>
+        break;
+    case "Transport":
+            <div class="label label-sm label-info">
+                <i class="fa fa-bolt"></i>
+            </div>
+        break;
+    default:
+            <div class="label label-sm label-danger">
+                <i class="fa fa-bolt"></i>
+            </div>
+        break;
+}
+}

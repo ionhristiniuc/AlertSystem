@@ -31,8 +31,7 @@ namespace WebApp.ViewModels
             Source_id = alert.Source_id;
             Address = alert.Address;
             IsUnread = IsUnread;
-            Type = alert.AlertCategory.ToString();
-            Category = alert.Alert_category;
+            Type = alert.Alert_category;            
         }
     }
 }
