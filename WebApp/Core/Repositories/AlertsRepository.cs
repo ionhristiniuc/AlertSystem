@@ -40,7 +40,7 @@ namespace WebApp.Repositories
                           where sub.Id == null
                           select a;
 
-                return res;
+                return res.ToList();
             }
         }
 

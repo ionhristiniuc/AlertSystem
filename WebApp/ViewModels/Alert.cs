@@ -17,6 +17,7 @@ namespace WebApp.ViewModels
         public Nullable<int> Source_id { get; set; }
         public string Address { get; set; }
         public bool IsUnread { get; set; }
+        public string Type { get; set; }
 
         public AlertModel(Alert alert, bool isUnread)
         {
@@ -29,6 +30,7 @@ namespace WebApp.ViewModels
             Source_id = alert.Source_id;
             Address = alert.Address;
             IsUnread = IsUnread;
+            Type = alert.AlertCategory.ToString();
         }
     }
 }
