@@ -234,8 +234,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\Course.cs" />
+<<<<<<< Updated upstream
+    <Compile Include="Database\Course.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Element.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
+=======
     <Compile Include="Database\Element.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Database\ParserTypes.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -5476,7 +5484,6 @@
       <DependentUpon>AlertModel.edmx</DependentUpon>
       <LastGenOutput>AlertModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Database\exports\Dump20171209_2131.sql" />
     <Content Include="Database\exports\Dump20171209_ecaiet_alert.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -5897,9 +5904,12 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Alerts\_AlertDetails.cshtml" />
     <Content Include="Views\Shared\_partialLogin.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\ViewCourse.cshtml" />
+=======
     <Content Include="Views\Shared\_Layout1.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
