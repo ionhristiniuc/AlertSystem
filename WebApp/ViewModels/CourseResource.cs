@@ -9,6 +9,7 @@ namespace WebApp.ViewModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string UniqueCode { get; set; }
 
         public virtual List<ComponentResource> Elements { get; set; }
     }
