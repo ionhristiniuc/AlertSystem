@@ -41,9 +41,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TextContent" Type="varchar" MaxLength="234" Nullable="false" />
-          <Property Name="BinaryContent" Type="longblob" Nullable="false" />
-          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="TextContent" Type="text" Nullable="false" />
+          <Property Name="BinaryContent" Type="longblob" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="LastChangedDate" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="CursId" Type="int" Nullable="false" />
@@ -398,6 +398,7 @@
           <Property Name="LastChangedDate" Type="DateTime" Nullable="false" />
           <Property Name="CursId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="course" Relationship="alertSystemModel.FK_element_course" FromRole="Element" ToRole="course" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -491,10 +492,10 @@
           <EntitySetMapping Name="Elements">
             <EntityTypeMapping TypeName="alertSystemModel.Element">
               <MappingFragment StoreEntitySet="element">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="CursId" ColumnName="CursId" />
                 <ScalarProperty Name="LastChangedDate" ColumnName="LastChangedDate" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="BinaryContent" ColumnName="BinaryContent" />
                 <ScalarProperty Name="TextContent" ColumnName="TextContent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

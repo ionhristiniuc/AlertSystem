@@ -21,6 +21,7 @@ namespace WebApp.Database
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastChangedDate { get; set; }
         public int CursId { get; set; }
+        public string Type { get; set; }
     
         public virtual Course course { get; set; }
     }
