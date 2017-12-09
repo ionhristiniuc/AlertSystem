@@ -5,20 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<a class="quick-nav-trigger" href="#0">
+    <span aria-hidden="true"></span>
+</a>
 
 <!-- END BASIC PORTLET-->
 <body class="bg-default bg-font-default">
 <br/>
 <br/>
-<br/>
 
-<div class="page-title" data-id-curs="@Model.Id">
-    <h1>
-        Cursul: @Model.Name
-    </h1>
-</div>
-<br/>
+
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>
+                Cursul: @Model.Name
+            </h1>
+        </div>
+        <!-- END PAGE TITLE -->
+        <!-- BEGIN PAGE TOOLBAR -->
+        <div class="page-toolbar">
+            <!-- BEGIN THEME PANEL -->
+            <div class="btn-group btn-theme-panel">
+                <a href="#" class="btn dropdown-toggle" data-toggle="modal">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+            <div class="btn-group btn-theme-panel">
+                <a href="#" class="btn dropdown-toggle" data-toggle="modal">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+            <!-- END THEME PANEL -->
+        </div>
+        <!-- END PAGE TOOLBAR -->
+    </div>
+
 
 @foreach (var elem in Model.Elements)
 {
