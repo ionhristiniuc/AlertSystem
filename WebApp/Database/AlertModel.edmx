@@ -393,7 +393,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TextContent" Type="String" Nullable="false" MaxLength="234" FixedLength="false" Unicode="false" />
           <Property Name="BinaryContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="LastChangedDate" Type="DateTime" Nullable="false" />
           <Property Name="CursId" Type="Int32" Nullable="false" />
