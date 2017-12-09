@@ -5,18 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Model.Id
+
 
 <!-- END BASIC PORTLET-->
+<body class="bg-default bg-font-default">
+<br/>
+<br/>
+<br/>
 
+<div class="page-title" data-id-curs="@Model.Id">
+    <h1>
+        Cursul: @Model.Name
+    </h1>
+</div>
+<br/>
 
 @foreach (var elem in Model.Elements)
 {
     <!-- BEGIN BASIC PORTLET-->
-    <div class="portlet light portlet-fit bordered">
+    <div class="portlet light portlet-fit  bordered">
         <div class="portlet-title">
             <div class="caption">
-                <i class=" icon-layers font-red"></i>
+                <i class="icon-layers font-red"></i>
                 <span class="caption-subject font-red bold uppercase"></span>
             </div>
             <div class="actions">
@@ -34,10 +44,12 @@
         <div class="portlet-body">
 
 
-            <div class="row">m
-                <div class="col-md-10">
-                    <div class="md-editor active" id="1512823405647">
-                       @* <div class="md-header btn-toolbar">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="md-editor active">
+
+
+                        @* <div class="md-header btn-toolbar">
                             <div class="btn-group">
                                 <button class="btn-default btn-sm btn" type="button" title="Bold" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdBold" data-hotkey="Ctrl+B">
                                     <span class="glyphicon glyphicon-bold"></span>
@@ -74,7 +86,9 @@
                                 </a>
                             </div>
                         </div>*@
-                        <textarea id="@elem.Id" name="content" data-provide="markdown" rows="10" class="md-input" style="resize: none;">@elem.TextContent</textarea>
+
+
+                        <textarea id="@elem.Id" name="content" data-provide="markdown" class="md-input">@elem.TextContent</textarea>
                         <div class="md-fullscreen-controls">
                             <a href="#" class="exit-fullscreen" title="Exit fullscreen">
                                 <span class="glyphicon glyphicon-fullscreen"></span>
@@ -87,5 +101,10 @@
 
         </div>
     </div>
-
 }
+</body>
+
+<script>
+    
+
+</script>
