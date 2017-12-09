@@ -35,7 +35,14 @@ namespace WebApp.Controllers
             return View(course);
         }
 
+        public ActionResult ViewCourseConspect(string code)
+        {
+            var course = _courseRepository.GetSingle(c => c.UniqueCode == code, c => c.Elements);
+            return View("ViewCourse", course);
+        }
+
         [HttpPost]
+        //[Authorize]
         public JsonResult AddComponent(SaveComponentResource model)
         {
             try
@@ -60,6 +67,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        //[Authorize]
         public JsonResult GetComponent(int id)
         {
             try

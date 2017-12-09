@@ -28,7 +28,8 @@ namespace WebApp.ViewModels
             return new CourseResource()
             {
                 Id = c.Id,
-                Name = c.Name
+                Name = c.Name,
+                UniqueCode = c.UniqueCode
             };
         }
     }

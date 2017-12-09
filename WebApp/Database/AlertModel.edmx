@@ -35,6 +35,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="UniqueCode" Type="varchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="element">
           <Key>
@@ -406,6 +407,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Elements" Relationship="alertSystemModel.FK_element_course" FromRole="course" ToRole="Element" />
+          <Property Name="UniqueCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_element_course">
           <End Type="alertSystemModel.Course" Role="course" Multiplicity="1" />
@@ -504,6 +506,7 @@
           <EntitySetMapping Name="Courses1">
             <EntityTypeMapping TypeName="alertSystemModel.Course">
               <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

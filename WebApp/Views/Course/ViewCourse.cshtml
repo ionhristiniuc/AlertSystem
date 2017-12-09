@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "CURS " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var linkToCourse = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host +
+                       (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port) + "/Course/ViewCourseConspect?code="
+                       + Model.UniqueCode;
 }
 
 <a class="quick-nav-trigger" href="#0">
@@ -32,10 +36,12 @@
                 </a>
             </div>
             <div class="btn-group btn-theme-panel">
-                <a href="#" class="btn dropdown-toggle" data-toggle="modal">
-                    <i class="icon-settings"></i>
+                <a onclick="copyToClipboard('linkToCourse')" class="btn dropdown-toggle" data-toggle="modal">
+                    <i class="fa fa-clipboard"></i>
                 </a>
             </div>
+            
+            <div id="linkToCourse" hidden="hidden">@linkToCourse</div>
             <!-- END THEME PANEL -->
         </div>
         <!-- END PAGE TOOLBAR -->
@@ -190,3 +196,8 @@
     
 
 </script>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/custom/copy-to-clipboard.js"></script>
+}
