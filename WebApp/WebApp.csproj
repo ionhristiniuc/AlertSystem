@@ -205,7 +205,9 @@
     <Compile Include="Core\Enums\ParserTypesEnum.cs" />
     <Compile Include="Core\Extensions\AlertsExtensions.cs" />
     <Compile Include="Core\Factories\AlertsParsersFactory.cs" />
+    <Compile Include="Core\Repositories\ComponentRepository.cs" />
     <Compile Include="Core\Repositories\CourseRepository.cs" />
+    <Compile Include="Core\Repositories\IComponentRepository.cs" />
     <Compile Include="Core\Repositories\ICourseRepository.cs" />
     <Compile Include="Core\Services\AlertsService.cs" />
     <Compile Include="Core\Services\CourseService.cs" />
@@ -234,8 +236,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlertModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\Course.cs" />
-    <Compile Include="Database\Element.cs" />
+    <Compile Include="Database\Course.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Element.cs">
+      <DependentUpon>AlertModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\ParserTypes.cs">
       <DependentUpon>AlertModel.tt</DependentUpon>
     </Compile>
@@ -262,6 +268,10 @@
     <Compile Include="Core\Repositories\UsersRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Alert.cs" />
+    <Compile Include="ViewModels\ComponentResource.cs" />
+    <Compile Include="ViewModels\CourseResource.cs" />
+    <Compile Include="ViewModels\ObjectMapper.cs" />
+    <Compile Include="ViewModels\SaveComponentResource.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5464,8 +5474,6 @@
     <Content Include="Content\assets\pages\scripts\widgets.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\menuSource\css\style.css" />
-    <Content Include="Content\menuSource\js\index.js" />
     <Content Include="Database\AlertModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AlertModel.edmx</DependentUpon>
@@ -5862,7 +5870,6 @@
     <Content Include="Content\assets\pages\media\pages\Thumbs.db" />
     <Content Include="Documentation.chm" />
     <Content Include="App_Code\IconHelper.cshtml" />
-    <Content Include="Content\menuSource\scss\style.scss" />
     <None Include="Properties\PublishProfiles\AlertSystem - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -5899,7 +5906,6 @@
     <Content Include="Views\Shared\_partialLogin.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\ViewCourse.cshtml" />
-    <Content Include="Views\Shared\_Layout1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

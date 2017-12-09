@@ -18,6 +18,7 @@ namespace WebApp
             container.RegisterType<ISourcesRepository, SourcesRepository>();
             container.RegisterType<IAlertsService, AlertsService>();
             container.RegisterType<ICourseRepository, CourseRepository>();
+            container.RegisterType<IComponentRepository, ComponentRepository>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
