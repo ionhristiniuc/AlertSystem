@@ -29,6 +29,18 @@
           </Key>
           <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="element">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextContent" Type="varchar" MaxLength="234" Nullable="false" />
+          <Property Name="BinaryContent" Type="longblob" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LastChangedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CursId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="parser_types">
           <Key>
             <PropertyRef Name="Type" />
@@ -137,6 +149,7 @@
         <EntityContainer Name="alertSystemModelStoreContainer">
           <EntitySet Name="alert" EntityType="Self.alert" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="alert_category" EntityType="Self.alert_category" Schema="alertsystem" store:Type="Tables" />
+          <EntitySet Name="element" EntityType="Self.element" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="parser_types" EntityType="Self.parser_types" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="source" EntityType="Self.source" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="alertsystem" store:Type="Tables" />
@@ -269,6 +282,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="user_alert_queue" EntitySet="UserAlertQueue" />
           </AssociationSet>
+          <EntitySet Name="Elements" EntityType="alertSystemModel.Element" />
         </EntityContainer>
         <EntityType Name="ParserTypes">
           <Key>
@@ -343,6 +357,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Element">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextContent" Type="String" Nullable="false" MaxLength="234" FixedLength="false" Unicode="false" />
+          <Property Name="BinaryContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="CursId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -408,6 +434,19 @@
                 <ScalarProperty Name="ViewedOn" ColumnName="ViewedOn" />
                 <ScalarProperty Name="AlertId" ColumnName="AlertId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elements">
+            <EntityTypeMapping TypeName="alertSystemModel.Element">
+              <MappingFragment StoreEntitySet="element">
+                <ScalarProperty Name="CursId" ColumnName="CursId" />
+                <ScalarProperty Name="LastChangedDate" ColumnName="LastChangedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="BinaryContent" ColumnName="BinaryContent" />
+                <ScalarProperty Name="TextContent" ColumnName="TextContent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

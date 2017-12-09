@@ -31,5 +31,6 @@ namespace WebApp.Database
         public DbSet<ParserTypes> ParserTypes { get; set; }
         public DbSet<AlertCategory> AlertCategory { get; set; }
         public DbSet<UserAlertQueue> UserAlertQueue { get; set; }
+        public DbSet<Element> Elements { get; set; }
     }
 }

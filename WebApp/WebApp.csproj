@@ -3630,7 +3630,6 @@
     <Content Include="Content\assets\global\plugins\icheck\demo\css\montserrat-regular.svg" />
     <Content Include="Content\assets\global\plugins\icheck\demo\css\normalize.css" />
     <Content Include="Content\assets\global\plugins\icheck\demo\index.html" />
-    <Content Include="Content\assets\global\plugins\icheck\demo\js\custom.js" />
     <Content Include="Content\assets\global\plugins\icheck\demo\js\custom.min.js" />
     <Content Include="Content\assets\global\plugins\icheck\demo\js\jquery.js" />
     <Content Include="Content\assets\global\plugins\icheck\demo\js\zepto.js" />
@@ -5636,7 +5635,6 @@
     <Content Include="Content\assets\global\plugins\icheck\.gitignore" />
     <Content Include="Content\assets\global\plugins\icheck\bower.json" />
     <Content Include="Content\assets\global\plugins\icheck\CHANGELOG.md" />
-    <Content Include="Content\assets\global\plugins\icheck\demo\css\custom.styl" />
     <Content Include="Content\assets\global\plugins\icheck\demo\css\montserrat-bold.eot" />
     <Content Include="Content\assets\global\plugins\icheck\demo\css\montserrat-bold.ttf" />
     <Content Include="Content\assets\global\plugins\icheck\demo\css\montserrat-bold.woff" />
@@ -5853,6 +5851,7 @@
     <Content Include="Content\assets\pages\media\pages\Thumbs.db" />
     <Content Include="Documentation.chm" />
     <Content Include="App_Code\IconHelper.cshtml" />
+    <None Include="Properties\PublishProfiles\AlertSystem - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5867,7 +5866,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
