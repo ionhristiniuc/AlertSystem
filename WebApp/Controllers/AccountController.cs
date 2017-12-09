@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using WebApp.Repositories;
@@ -61,7 +62,7 @@ namespace WebApp.Controllers
                     IsPersistent = model.RememberMe
                 }, identity);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ViewCourse", "Course", new RouteValueDictionary() { {"courseId", "1"} });
             }
             else
             {

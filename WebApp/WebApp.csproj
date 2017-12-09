@@ -5906,6 +5906,7 @@
     <Content Include="Views\Shared\_partialLogin.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\ViewCourse.cshtml" />
+    <Content Include="Views\Shared\AddComponent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

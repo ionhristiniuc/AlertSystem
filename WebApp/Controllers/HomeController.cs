@@ -9,6 +9,7 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {    
+    [Authorize]
     public class HomeController : Controller
     {
         private IUsersRepository _usersRepository;
