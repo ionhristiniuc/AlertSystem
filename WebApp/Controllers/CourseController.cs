@@ -82,5 +82,19 @@ namespace WebApp.Controllers
                 return Json("error: " + e.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        //[Authorize]
+        public ActionResult GetComponentPartial()
+        {
+            try
+            {
+                return View("_ComponentPartial");
+            }
+            catch (Exception e)
+            {
+                return Json("error: " + e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
