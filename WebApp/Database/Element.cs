@@ -17,7 +17,6 @@ namespace WebApp.Database
         public int Id { get; set; }
         public string TextContent { get; set; }
         public byte[] BinaryContent { get; set; }
-        public int TypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastChangedDate { get; set; }
         public int CursId { get; set; }

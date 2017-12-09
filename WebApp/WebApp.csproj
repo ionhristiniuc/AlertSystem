@@ -5478,6 +5478,7 @@
       <DependentUpon>AlertModel.edmx</DependentUpon>
       <LastGenOutput>AlertModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Database\exports\Dump20171209_2131.sql" />
     <Content Include="Database\exports\Dump20171209_ecaiet_alert.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
