@@ -29,6 +29,13 @@
           </Key>
           <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
         <EntityType Name="element">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,6 +117,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_element_course">
+          <End Role="course" Type="Self.course" Multiplicity="1" />
+          <End Role="element" Type="Self.element" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="element">
+              <PropertyRef Name="CursId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_source_ParserType_parser_types_Type">
           <End Role="parser_types" Type="Self.parser_types" Multiplicity="1" />
           <End Role="source" Type="Self.source" Multiplicity="*" />
@@ -149,6 +168,7 @@
         <EntityContainer Name="alertSystemModelStoreContainer">
           <EntitySet Name="alert" EntityType="Self.alert" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="alert_category" EntityType="Self.alert_category" Schema="alertsystem" store:Type="Tables" />
+          <EntitySet Name="course" EntityType="Self.course" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="element" EntityType="Self.element" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="parser_types" EntityType="Self.parser_types" Schema="alertsystem" store:Type="Tables" />
           <EntitySet Name="source" EntityType="Self.source" Schema="alertsystem" store:Type="Tables" />
@@ -165,6 +185,10 @@
           <AssociationSet Name="fk_alert_user" Association="Self.fk_alert_user">
             <End Role="user" EntitySet="user" />
             <End Role="alert" EntitySet="alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_element_course" Association="Self.FK_element_course">
+            <End Role="course" EntitySet="course" />
+            <End Role="element" EntitySet="element" />
           </AssociationSet>
           <AssociationSet Name="FK_source_ParserType_parser_types_Type" Association="Self.FK_source_ParserType_parser_types_Type">
             <End Role="parser_types" EntitySet="parser_types" />
@@ -283,6 +307,11 @@
             <End Role="user_alert_queue" EntitySet="UserAlertQueue" />
           </AssociationSet>
           <EntitySet Name="Elements" EntityType="alertSystemModel.Element" />
+          <EntitySet Name="Courses1" EntityType="alertSystemModel.Course" />
+          <AssociationSet Name="FK_element_course" Association="alertSystemModel.FK_element_course">
+            <End Role="course" EntitySet="Courses1" />
+            <End Role="Element" EntitySet="Elements" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ParserTypes">
           <Key>
@@ -368,7 +397,28 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="LastChangedDate" Type="DateTime" Nullable="false" />
           <Property Name="CursId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="course" Relationship="alertSystemModel.FK_element_course" FromRole="Element" ToRole="course" />
         </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Elements" Relationship="alertSystemModel.FK_element_course" FromRole="course" ToRole="Element" />
+        </EntityType>
+        <Association Name="FK_element_course">
+          <End Type="alertSystemModel.Course" Role="course" Multiplicity="1" />
+          <End Type="alertSystemModel.Element" Role="Element" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Element">
+              <PropertyRef Name="CursId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -447,6 +497,14 @@
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="BinaryContent" ColumnName="BinaryContent" />
                 <ScalarProperty Name="TextContent" ColumnName="TextContent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses1">
+            <EntityTypeMapping TypeName="alertSystemModel.Course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

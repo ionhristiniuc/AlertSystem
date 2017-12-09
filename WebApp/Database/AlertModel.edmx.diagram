@@ -18,6 +18,8 @@
         <AssociationConnector Association="alertSystemModel.FK_uaq_AlertId_alert_Id" />
         <AssociationConnector Association="alertSystemModel.FK_uaq_UserId_user_Id" />
         <EntityTypeShape EntityType="alertSystemModel.Element" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="alertSystemModel.Course" Width="1.5" PointX="1.125" PointY="10.25" />
+        <AssociationConnector Association="alertSystemModel.FK_element_course" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

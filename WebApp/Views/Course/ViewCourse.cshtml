@@ -1,0 +1,18 @@
+﻿@model WebApp.Database.Course
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>title</h2>
+
+@Model.Id
+
+@Model.Name
+
+@foreach (var elem in Model.Elements)
+{
+    <text>@elem.Id</text>
+    <text>@elem.TextContent</text>
+}

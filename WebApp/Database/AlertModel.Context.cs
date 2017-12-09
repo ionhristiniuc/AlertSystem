@@ -32,5 +32,6 @@ namespace WebApp.Database
         public DbSet<AlertCategory> AlertCategory { get; set; }
         public DbSet<UserAlertQueue> UserAlertQueue { get; set; }
         public DbSet<Element> Elements { get; set; }
+        public DbSet<Course> Courses1 { get; set; }
     }
 }

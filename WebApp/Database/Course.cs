@@ -12,16 +12,16 @@ namespace WebApp.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Element
+    public partial class Course
     {
-        public int Id { get; set; }
-        public string TextContent { get; set; }
-        public byte[] BinaryContent { get; set; }
-        public int TypeId { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public System.DateTime LastChangedDate { get; set; }
-        public int CursId { get; set; }
+        public Course()
+        {
+            this.Elements = new HashSet<Element>();
+        }
     
-        public virtual Course course { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<Element> Elements { get; set; }
     }
 }
