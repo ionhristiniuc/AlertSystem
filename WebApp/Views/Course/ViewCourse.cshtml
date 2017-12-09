@@ -128,7 +128,6 @@
 
 
     <div class="modal fade" id="add_element" tabindex="-1" role="basic" aria-hidden="true">
-        <div class="modal-dialog">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -137,6 +136,7 @@
                 </div>
                 <div class="modal-body">
 
+                    
                     <form method="post" action="@Url.Action("AddAlert", "Alerts")" class="form-horizontal" id="addAlert">
                         <div class="form-body">
                             <div class="form-group">
@@ -176,10 +176,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn dark btn-outline" data-dismiss="modal">Renunta</button>
-                    <button type="button" class="btn green">Salveaza schimbari</button>
+                    <button type="submit" class="btn green">Salveaza schimbari</button>
                 </div>
             </div>
-        </div>
     </div>
 
 
